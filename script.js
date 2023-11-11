@@ -45,6 +45,11 @@
 //   completed: false,
 // }
 
+const todoItems = []
+
+let lastID = 0
+
+
 // Initialise an empty array with the variable name todoItems
 
 // Function to add a todo to the list
@@ -54,9 +59,14 @@
 // It's really important that you have a unique ID for each todo item that you push onto the array
 // the function does not need to return anything
 function addToDoItem(text) {
+  lastID += 1 //adding one to ID #
+  let todoItem = {
+    id: lastID,
+    text: text, //Text = text input
+    completed: false,
+  }
+  todoItems.push(todoItem) //pushed to the end of array
   // Implement the logic to add a task here
-
-  console.log("NOT YET IMPLEMENTED"); // Remove this line when you start working on the function
 }
 
 // Function to remove a todo to the list
@@ -65,6 +75,17 @@ function addToDoItem(text) {
 // that matches the id passed to the function, remove it from the array
 // the function does not need to return anything
 function removeToDoItem(todoId) {
+  for (let itemIndex = 0; itemIndex < todoItems.length; itemIndex++) {
+    todoItems[itemIndex] 
+    if (todoItems[itemIndex].id === todoId) {
+      delete todoItems[itemIndex]
+      break 
+    }
+
+  }//loop over array itemindex is always less than so as soon as its bigger its stops
+  
+  
+  
   // Implement the logic to add a task here
 
   console.log("NOT YET IMPLEMENTED"); // Remove this line when you start working on the function
