@@ -59,6 +59,9 @@ let lastID = 0
 // It's really important that you have a unique ID for each todo item that you push onto the array
 // the function does not need to return anything
 function addToDoItem(text) {
+  if (!typeof text === "string") {
+    return false
+  }
   lastID += 1 //adding one to ID #
   let todoItem = {
     id: lastID,
@@ -67,6 +70,7 @@ function addToDoItem(text) {
     
   }
   todoItems.push(todoItem) //pushed to the end of array
+  return true
   // Implement the logic to add a task here
 }
 
@@ -76,17 +80,20 @@ function addToDoItem(text) {
 // that matches the id passed to the function, remove it from the array
 // the function does not need to return anything
 function removeToDoItem(todoId) {
+  if (!Number.isInteger(todoId)) {
+    return false
+  }
   for (let itemIndex = 0; itemIndex < todoItems.length; itemIndex++) {
     
     if (todoItems[itemIndex].id === todoId) {
       console.log(todoItems);
       todoItems.splice(itemIndex,1);
       console.log(todoItems);
-      break 
+      return true
     }
 
   }//loop over array itemindex is always less than so as soon as its bigger its stops
-  
+  return false
   
   
   // Implement the logic to add a task here
@@ -100,13 +107,17 @@ function removeToDoItem(todoId) {
 // that matches the id passed to the function, set its completed property to true
 // the function does not need to return anything
 function markToDoItemAsCompleted(todoId) {
+  if (!Number.isInteger(todoId)) {
+    return false
+  }
   for (let itemIndex = 0; itemIndex < todoItems.length; itemIndex++) {
     
     if (todoItems[itemIndex].id === todoId) { 
       todoItems[itemIndex].completed = true;
-      break
+      return true
     }
   }
+  return flase
 }
 
 // Function to delete a task from the array
@@ -116,12 +127,16 @@ function markToDoItemAsCompleted(todoId) {
 // the function does not need to return anything, though you can return
 // true or false depending on whether the item was successfully deleted
 function deleteToDoItem(todoId) {
+  if (!Number.isInteger(todoId)) {
+    return false
+  }
   for (let itemIndex = 0; itemIndex < todoItems.length; itemIndex++) {
     if (todoItems[itemIndex].id === todoId) {
       todoItems.splice(itemIndex, 1)
-      break
+      return true
      }
   }
+  return false
   // Implement the logic to remove a task here
 }
 
@@ -132,6 +147,7 @@ function clearCompletedTasks() {
   for (let itemIndex = 0; itemIndex < todoItems.length; itemIndex++) {
     if (todoItems[itemIndex].completed) {
     todoItems.splice(itemIndex,1)
+    return true
     }
   }
  
